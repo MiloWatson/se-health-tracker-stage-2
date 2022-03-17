@@ -1,0 +1,122 @@
+DROP TABLE IF EXISTS users ;
+DROP TABLE IF EXISTS security_questions;
+DROP TABLE IF EXISTS profiles ;
+DROP TABLE IF EXISTS goals ;
+DROP TABLE IF EXISTS exercises ;
+DROP TABLE IF EXISTS foods ;
+DROP TABLE IF EXISTS user_day ;
+DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS invite_codes;
+
+CREATE TABLE users (
+	user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	first_name TEXT NOT NULL,
+	last_name TEXT NOT NULL,
+	email TEXT NOT NULL UNIQUE,
+	username TEXT NOT NULL UNIQUE,
+	salt TEXT NOT NULL, 
+	password TEXT NOT NULL,
+	question1_id INTEGER NOT NULL,
+	question1_answer TEXT NOT NULL,
+	question2_id INTEGER NOT NULL,
+	question2_answer TEXT NOT NULL,
+	profile TEXT,
+	FOREIGN KEY (question1_id)
+		REFERENCES security_questions (question_id)
+		ON UPDATE NO ACTION ON DELETE NO ACTION,
+	FOREIGN KEY (question2_id)
+		REFERENCES security_questions (question_id)
+		ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE security_questions (
+	question_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	question TEXT NOT NULL
+);
+
+CREATE TABLE groups (
+	group_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	group_name TEXT,
+	group_info TEXT
+);
+
+CREATE TABLE invite_codes (
+	code TEXT PRIMARY KEY NOT NULL,
+	group_id INTEGER NOT NULL,
+	user_id INTEGER NOT NULL,
+	FOREIGN KEY (group_id)
+		REFERENCES groups (group_id)
+		ON UPDATE NO ACTION ON DELETE NO ACTION,
+	FOREIGN KEY (user_id)
+		REFERENCES users (user_id)
+		ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+
+INSERT INTO security_questions(question) VALUES("What is your mother's maiden name?");
+INSERT INTO security_questions(question) VALUES("What was your childhood nickname?");
+INSERT INTO security_questions(question) VALUES("What was the street you grew up on?");
+INSERT INTO security_questions(question) VALUES("Who was your favourite teacher?");
+INSERT INTO security_questions(question) VALUES("What is your favourite flavour of ice cream?");
+INSERT INTO security_questions(question) VALUES("What is your favourite breed of dog?");
+
+
+-------------------------
+How to read JSON serialised objects in Java:
+https://mkyong.com/java/how-do-convert-java-object-to-from-json-format-gson-api/
+
+
+WHAT TO STORE IN EACH DATABASE COLUMN
+
+users:
+	first_name 	> first name
+	last_name 	> last name
+	email 		> email (could use regex to confirm email entered)
+	username 	> username
+	salt 		> AUTO GENERATED
+	password 	> password
+	question1_id 	> question id
+	question1_ans 	> user answer
+	question2_id 	> question id
+	question2_ans 	> user answer
+
+security questions:
+	question 	> unique security question
+
+profiles:
+	date_of_birth 	> YYYY-MM-DD format for storage
+	height 		> height in cm
+	is_imperial 	> boolean
+	bio 		> max 300 characters personal bio
+	list_of_groups 	> delimited list of group ids
+	fav_group	> fav group id
+	avatar_id	> avatar id
+	user_id		> id to link users and profiles
+
+goals:
+	set_date	> YYYY-MM-DD (could use ISO 8601 format)
+	target_date	> YYYY-MM-DD
+	goal_type	> WeightGoal, StrengthGoal or CardioGoal
+	param1		> NULL, strengthType or cardioType
+	param2		> int currentWeight (grams), equipment weight (grams) or distance (metres)
+	param3		> int targetWeight (grams), reps or time (seconds)
+	profile_id	> id to link profiles and goals
+
+exercises:
+	exercise_name	> name of exercise (eg. pressup)
+	exercise_desc 	> exercise description
+	exercise_type	> CardioGoal or StrengthGoal
+	param1		> int distance (metres) or weight (grams)
+	param2		> int time (seconds) or sets
+	param3		> NULL or int reps
+
+foods:
+	food_name 	> food name
+	food_type	> food group (eg. vegetable)
+	calories 	> int calories per 100g?
+
+user_day:
+	meals 		>
+	exercises	>
+	date 		> YYYY-MM-DD
+	profile_id 	> id to link profiles and user days

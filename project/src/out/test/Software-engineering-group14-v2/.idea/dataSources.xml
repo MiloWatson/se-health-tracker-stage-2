@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="healthtracker" uuid="c6432179-6988-4eb5-99ab-b7beef2e1293">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Documents\University\Year 2\Software Engineering\software-engineering-group-14-health-tracker-v2\project\src\MVC\model\healthtracker.db</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="healthtracker [2]" uuid="ce40bd96-d401-4fc1-b30a-bc0ed34a14a0">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\harry\Documents\SoftEngRepo\software-engineering-group-14-health-tracker-v2\project\src\MVC\model\healthtracker.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="healthtracker [3]" uuid="51c35214-46c1-48fa-a5b3-34448e6ed3b5">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Documents\git\software-engineering-group-14-health-tracker-v2\project\src\MVC\model\healthtracker.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="healthtracker [4]" uuid="f933732e-480e-4c06-9808-121c0faae9b5">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\harry\Documents\Work\UNI\year 2\SoftEng\Repo\group-14-health-tracker-stage-2\project\src\MVC\model\healthtracker.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
